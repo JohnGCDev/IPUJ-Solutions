@@ -62,17 +62,26 @@ public class E_01_PairOfDiceReforged {
 	/**
 	 * @author JDav
 	 * Method for counting how many times a pair of dice must be rolled until to the sum of 
-	 * its values is equal a value passed as parameter
-	 * @param value the value to get via rolling the dice
-	 * @return How many times the dice were rolled until get the value
-	 * @throws IllegalArgumentException When the value passed as parameter is not in the range 2 to 12
+	 * its values is equal a value passed as parameter.
+	 * @param value the value to get via rolling the dice.
+	 * @param verbose boolean value for evaluating whether it's necessary to write an output message in each dice roll.
+	 * @return How many times the dice were rolled until get the value.
+	 * @precondition The constructor has already been called.
+	 * @throws IllegalArgumentException When the value passed as parameter is not in the range 2 to 12.
 	 */
-	public int timesToUpToValue(int value) {
+	public int timesToUpToValue(int value, boolean verbose) {
 		if(value < 2 || value > 12) throw new IllegalArgumentException("The value must be in the range 2 to 12");
 		int times = 0;
-		while(die1 + die2 != value) {
-			roll();
-			System.out.print("\n" + (++times) + ". " + toString() + " And its sum is " + (getDie1() + getDie2()));
+		if(verbose) {//Avoid "verbose" condition from repeating each time into while loop (it's unnecessary work)
+			do {
+				roll();
+				System.out.print("\n" + (++times) + ". " + toString() + " And its sum is " + (getDie1() + getDie2()));
+			}while(die1 + die2 != value);
+		}else {
+			do {
+				roll();
+				++times;
+			}while(die1 + die2 != value);
 		}
 		return times;
 	}
@@ -87,7 +96,7 @@ public class E_01_PairOfDiceReforged {
 		int resp = TextIO.getlnInt();
 		try {
 			System.out.print("\n\nTo obtain the sum of the dice values equal to "+ resp +" was neccessary " +
-			dice.timesToUpToValue(resp) + " rolls.");
+			dice.timesToUpToValue(resp, true) + " rolls.");
 		}catch(IllegalArgumentException e) {
 			System.out.print("\nAn error has occurred. "+ e.getMessage());
 		}

@@ -16,7 +16,7 @@ public class E_02_StatCalcReforged {
     private double sum = 0;  // The sum of all the items that have been entered.
     private double squareSum = 0;  // The sum of the squares of all the items.
     private double max = 0;		//The maximum entered value
-    private double min = 0;		//The minimum entered value
+    private double min;		//The minimum entered value
     
     /**
      * @author David J. Eck (modified by JDav)
@@ -28,7 +28,11 @@ public class E_02_StatCalcReforged {
         sum += num;
         squareSum += num*num;
         if(num > max) max = num;
-        if(num < min) min = num;
+        if(count == 1) {//First entered value
+        	min = num;
+        }else {
+        	if(num < min) min = num;
+        }
     }
 
     /**
