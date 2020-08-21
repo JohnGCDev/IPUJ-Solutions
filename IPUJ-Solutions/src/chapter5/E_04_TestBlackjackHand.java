@@ -9,7 +9,7 @@ import shared.classes.chapter5.Card;
  * from a Hand (shared.classes.chapter.Hand.java) of Cards (shared.classes.chapter.Card.java) and finally 
  * printing out these cards with along their Blackjack value as many times as the user wishes.
  */
-public class E_04_TestBlackJackHand {
+public class E_04_TestBlackjackHand {
 
 	public static void main(String[] args) {
 		boolean resp;
